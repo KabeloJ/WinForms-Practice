@@ -31,6 +31,7 @@ namespace WinForms_Practice
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.flTop = new System.Windows.Forms.FlowLayoutPanel();
             this.Get = new System.Windows.Forms.RadioButton();
@@ -43,6 +44,7 @@ namespace WinForms_Practice
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Add = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Parameter = new System.Windows.Forms.RadioButton();
             this.Header = new System.Windows.Forms.RadioButton();
@@ -50,7 +52,6 @@ namespace WinForms_Practice
             this.label3 = new System.Windows.Forms.Label();
             this.txtValue = new System.Windows.Forms.TextBox();
             this.txtKey = new System.Windows.Forms.TextBox();
-            this.Add = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.flTop.SuspendLayout();
@@ -60,6 +61,7 @@ namespace WinForms_Practice
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.flTop);
             this.panel1.Controls.Add(this.richTextBox1);
@@ -68,12 +70,19 @@ namespace WinForms_Practice
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             resources.ApplyResources(this.dataGridView1, "dataGridView1");
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // flTop
             // 
@@ -164,6 +173,13 @@ namespace WinForms_Practice
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
+            // Add
+            // 
+            resources.ApplyResources(this.Add, "Add");
+            this.Add.Name = "Add";
+            this.Add.UseVisualStyleBackColor = true;
+            this.Add.Click += new System.EventHandler(this.Add_Click);
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.Parameter);
@@ -210,13 +226,6 @@ namespace WinForms_Practice
             resources.ApplyResources(this.txtKey, "txtKey");
             this.txtKey.Name = "txtKey";
             // 
-            // Add
-            // 
-            resources.ApplyResources(this.Add, "Add");
-            this.Add.Name = "Add";
-            this.Add.UseVisualStyleBackColor = true;
-            this.Add.Click += new System.EventHandler(this.Add_Click);
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -226,7 +235,6 @@ namespace WinForms_Practice
             this.Controls.Add(this.panel1);
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.panel1.ResumeLayout(false);
@@ -264,5 +272,6 @@ namespace WinForms_Practice
         private System.Windows.Forms.TextBox txtValue;
         private System.Windows.Forms.TextBox txtKey;
         private System.Windows.Forms.Button Add;
+        private System.Windows.Forms.Label label4;
     }
 }

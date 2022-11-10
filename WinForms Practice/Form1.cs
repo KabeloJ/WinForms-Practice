@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using WinForms_Practice.Models;
 using RestSharp;
 using WinForms_Practice.Services;
+using Newtonsoft.Json;
 
 namespace WinForms_Practice
 {
@@ -23,6 +24,7 @@ namespace WinForms_Practice
             InitializeComponent();
             RequestModel.MethodType = RestSharp.Method.Get;
             paramOrheader = "parameter";
+            dataGridView1.AutoSize = true;
         }
         void Toggle()
         {
@@ -79,7 +81,17 @@ namespace WinForms_Practice
                 var r = services.APICall();
                 if (r != null)
                 {
-                    RequestModel.Response = r.Content;
+                    try
+                    {
+
+                        var t = JsonConvert.DeserializeObject(r.Content);
+                        var str = JsonConvert.SerializeObject(t, Formatting.Indented);
+                        RequestModel.Response = str;
+                    }
+                    catch (Exception)
+                    {
+                        RequestModel.Response = r.Content;
+                    }
                 }
                 richTextBox2.Text = RequestModel.Response;
             }
@@ -120,8 +132,20 @@ namespace WinForms_Practice
                     Value = txtValue.Text
                 }
             );
+            txtKey.Text = "";
+            txtValue.Text = "";
+            dataGridView1.DataSource = null;
             dataGridView1.DataSource = RequestModel.requestItemsModels;
-            dataGridView1.Columns.RemoveAt(0);
+            if (dataGridView1.Columns.Count != 3)
+            {
+                dataGridView1.Columns.RemoveAt(0);
+            }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
     }
 }
