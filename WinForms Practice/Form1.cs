@@ -22,6 +22,16 @@ namespace WinForms_Practice
         public MainForm()
         {
             InitializeComponent();
+            if (UserPreference.Id == null)
+            {
+                var reg = new RegistrationForm();
+                reg.Show();
+                this.Close();
+            }
+            else
+            {
+
+            }
             RequestModel.MethodType = RestSharp.Method.Get;
             paramOrheader = "parameter";
             dataGridView1.AutoSize = true;
